@@ -1,2 +1,3 @@
 ﻿  Source.cpp
+e:\lap_trinh\c++\c_double_plus\array\source.cpp(227): warning C4101: 'x': unreferenced local variable
   Array.vcxproj -> E:\Lap_Trinh\C++\C_Double_Plus\Debug\Array.exe
