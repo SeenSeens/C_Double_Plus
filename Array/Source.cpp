@@ -8,6 +8,12 @@ int DemLe(int a[], int n);
 void InChanLe(int a[], int n);
 void LocSNT(int a[], int n);
 void SoChinhPhuong(int a[], int n);
+void LocDX(int a[], int n);
+int TongSoTrongDay(int a[], int n);
+int TongSoNTTrongDay(int a[], int n);
+int TongCP(int a[], int n);
+int TongCacSoTanCungLa3(int a[], int n);
+//int DemX(int a[], int n, int x);
 
 void NhapMang(int a[], int &n)
 {
@@ -128,14 +134,97 @@ void SoChinhPhuong(int a[], int n)
 	}
 }
 // Lọc các số đối xứng trong dãy
+int KTDX(int a)
+{
+	int b = 0, i, m = a;
+	while (a > 0)
+	{
+		i = a % 10;
+		b = b * 10 + i;
+		a /= 10;
+	}
+	if (m == b)
+	{
+		return 1; 
+	}
+	return 0;
+}
+void LocDX(int a[], int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] > 9 && KTDX(a[i]) == 1)
+		{
+			cout << "\t" << a[i];
+		}
+	}
+	cout << "Khong co so doi xung";
+}
 // Tính tổng dãy
+int TongSoTrongDay(int a[], int n)
+{
+	int sum = 0;
+	for (int i = 0; i < n; i++)
+	{
+		sum += a[i];
+	}
+	return sum;
+}
 // Tính tổng các SNT trong dãy
+int TongSoNTTrongDay(int a[], int n)
+{
+	int sum = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (KTSNT(a[i]))
+		{
+			sum += a[i];
+		}
+	}
+	return sum;
+}
 // Tính tổng các số chính phương trong dãy
+int TongCP(int a[], int n)
+{
+	int sum = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (KiemTraCP(a[i]))
+		{
+			sum += a[i];
+		}
+	}
+	return sum;
+}
 // Tính tổng các số tận cùng là 3 trong dãy
+int TongCacSoTanCungLa3(int a[], int n)
+{
+	int sum = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] % 10 == 3 || a[i] % 10 == -3)
+		{
+			sum += a[i];
+		}
+	}
+	return sum;
+}
 // Nhập X đếm số lần xuất hiện của x trong dãy. Nếu không có thì xuất không có phần tử.
+//int DemX(int a[], int n, int x)
+//{
+//	int dem = 0;
+//	for (int i = 0; i < n; i++)
+//	{
+//		if (a[i] == x)
+//		{
+//			dem++;
+//		}
+//	}
+//	return dem;
+//}
 int main()
 {
-	int a[MAX], n;
+	int a[MAX], n, x;
 	NhapMang(a, n);
 	cout << "Mang vua nhap la\n";
 	XuatMang(a, n);
@@ -146,6 +235,13 @@ int main()
 	LocSNT(a, n);
 	cout << "\nCac so chinh phuong ";
 	SoChinhPhuong(a, n);
+	cout << endl;
+	LocDX(a, n);
+	cout << "\nTong cac so trong day " << TongSoTrongDay(a, n);
+	cout << "\nTong cac so nguyen to trong day " << TongSoNTTrongDay(a, n);
+	cout << "\nTong cac so chinh phuong trong day " << TongCP(a, n);
+	cout << "\nTong cac so tan cung la 3 la " << TongCacSoTanCungLa3(a, n);
+	//cout << "\nSo lan xuat hien cua X " << DemX(a, n, x);
 	cout << endl;
 	system("pause");
 }
